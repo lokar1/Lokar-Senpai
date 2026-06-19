@@ -1,0 +1,1684 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Lokar Anime</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+  /* Reset & Base */
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #101828;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Navbar */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111827;
+    padding: 14px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  
+  
+  
+  /* Search Box */
+.search-container {
+  position: relative;
+}
+
+#searchBox {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  width: 200px;
+  background: #1e293b;
+  color: white;
+}
+
+/* Dropdown Results */
+.search-results {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background: #111827;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.search-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #1f2937;
+}
+
+.search-item:hover {
+  background: #374151;
+}
+  
+  
+  
+  
+  
+  /* wrapper */
+.donate-wrapper {
+  position: relative;
+}
+
+/* button */
+.donate-btn {
+  background: white;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.donate-btn:active {
+  transform: scale(0.95);
+}
+
+.donate-btn::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  left: 0;
+  top: 0;
+  transform: scale(0);
+  transition: 0.4s;
+}
+
+.donate-btn:active::before {
+  transform: scale(2);
+  opacity: 0;
+}
+
+/* QR BOX */
+.qr-box {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 240px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+  opacity: 0;
+  transform: translateY(15px) scale(0.95);
+  transition: 0.3s ease;
+}
+
+/* show */
+.qr-box.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* heading */
+.qr-box h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #222;
+  text-align: center;
+}
+
+/* input */
+.qr-box input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.qr-box input:focus {
+  border-color: #007bff;
+}
+
+/* QR image */
+.qr-box img {
+  display: block;
+  margin: 15px auto 0;
+  width: 200px;
+  border-radius: 10px;
+  background: #f5f5f5;
+  padding: 5px;
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Nav links (desktop) */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links li {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    user-select: none;
+    transition: color 0.3s;
+  }
+  .nav-links li:hover,
+  .nav-links li:focus-visible {
+    color: #34D399;
+    outline: none;
+  }
+  .search {
+    font-size: 1.15rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* Hamburger menu button */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    width: 28px;
+    height: 20px;
+    justify-content: center;
+    user-select: none;
+    z-index: 1100;
+  }
+  .hamburger span {
+    background: white;
+    height: 3px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  /* Hamburger active transform */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Mobile nav */
+  @media (max-width: 768px) {
+    .nav-links {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      background: #111827;
+      height: calc(100% - 60px);
+      width: 220px;
+      flex-direction: column;
+      padding-top: 1rem;
+      gap: 18px;
+      box-shadow: -2px 0 7px -2px rgba(0,0,0,0.9);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+    .nav-links.open {
+      transform: translateX(0);
+    }
+    .search {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #2F855A 0%, #276749 100%);
+    padding: 100px 20px 96px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .hero h1 {
+    font-weight: 900;
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .hero h1 .highlight {
+    color: #A7F3D0;
+    text-shadow: 1px 1px 8px #2F855A;
+  }
+  .hero p {
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 16px 0 24px;
+  }
+  .btn-group {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-group button {
+    background: rgba(255 255 255 / 0.15);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 8px 18px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    user-select: none;
+  }
+  .btn-group button:hover,
+  .btn-group button:focus {
+    background-color: #A7F3D0;
+    color: #276749;
+    outline: none;
+  }
+
+  /* Section Titles */
+  section {
+    max-width: 1120px;
+    margin: 2rem auto 3rem;
+    padding: 0 20px;
+  }
+  h2.section-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+ gap: 8px;
+  }
+  h2.section-title span.emoji {
+    font-size: 1.4rem;
+  }
+ /* Trending Anime - Horizontal Scroll */
+  .cards-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 14px;
+    scroll-padding-left: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cards-row::-webkit-scrollbar {
+    height: 6px;
+  }
+  .cards-row::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 4px;
+  }
+  .cards-row::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  a.card {
+    text-decoration: none;
+    color: inherit;
+  }
+  .card {
+    min-width: 180px;
+    background-color: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgb(0 0 0 / 0.3);
+    flex-shrink: 0;
+    overflow: hidden;
+    scroll-snap-align: start;
+    cursor: pointer;
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+  }
+  /* Card hover */
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-6px);
+    outline: none;
+  }
+  .card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+  .badge-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #FB8500;
+    padding: 5px 11px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    user-select: none;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.6);
+  }
+  .badge-episode {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 5px 8px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    user-select: none;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.6);
+  }
+  .badge-duration {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.65);
+    padding: 5px 12px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    user-select: none;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.6);
+  }
+  .card-info {
+    padding: 14px 14px 18px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .card-info h3 {
+    margin: 0 0 4px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-info .year {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    user-select: none;
+  }
+  .genres {
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .genres span {
+    background: #334155;
+    color: #93c5fd;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 10px;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .rating {
+    margin-top: 6px;
+    color: #facc15;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+  }
+
+  /* Grid for recent, movies, fan dub, hindi dub collections */
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px, 1fr));
+    gap: 16px;
+  }
+  .grid-card {
+    background-color: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    position: relative;
+    box-shadow: 0 5px 14px rgb(0 0 0 / 0.28);
+    transition: transform 0.2s ease;
+    text-decoration: none;
+    
+    
+  }
+  .grid-card:hover,
+  .grid-card:focus-visible {
+    transform: translateY(-6px);
+    outline: none;
+  }
+  .grid-card img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .grid-card .badge-episode,
+  .grid-card .badge-duration {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  .grid-card-info {
+    padding: 12px 12px 16px;
+  }
+  .grid-card-info h4 {
+    margin: 0 0 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+}
+  }
+  .grid-card-info .year {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+/* Browse by Genre */
+  .genre-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .genre-card {
+    background: #000;
+    color: white;
+    font-weight: 700;
+    padding: 24px 18px;
+    border-radius: 16px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 0.25);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .genre-card:hover,
+  .genre-card:focus-visible {
+    transform: translateY(-8px);
+    outline: none;
+    filter: brightness(1.1);
+  }
+  .genre-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+  .genre-label {
+    font-size: 1.15rem;
+  }
+  .genre-explore {
+    font-weight: 400;
+    font-size: 0.85rem;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+  .genre-action { background: linear-gradient(45deg, #FF6B6B, #FF8E53); }
+  .genre-comedy { background: linear-gradient(45deg, #FFD93D, #FF8E53); }
+  .genre-romance { background: linear-gradient(45deg, #FF5194, #FF86B2); }
+  .genre-thriller { background: linear-gradient(45deg, #6B80FF, #A371FF); }
+  .genre-isekai { background: linear-gradient(45deg, #3FB0AC, #90F7EC); }
+  .genre-dark { background: linear-gradient(45deg, #4A4A4A, #000000); }
+  .genre-horror { background: linear-gradient(45deg, #6B0000, #FF0000); }
+
+
+
+
+.footer {
+  background: #111827; /* SAME as navbar */
+  color: white;
+  padding: 30px 20px 15px;
+  margin-top: 40px;
+}
+
+.footer-content {
+  max-width: 1120px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Left */
+.footer-left h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.footer-left p {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+/* Links */
+.footer-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #34D399;
+}
+
+/* Social */
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social a {
+  background: #1e293b;
+  padding: 8px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.footer-social a:hover {
+  background: #34D399;
+  color: #000;
+}
+
+/* Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  border-top: 1px solid #1f2937;
+  padding-top: 10px;
+}
+
+
+
+
+  /* Subscribe Section */
+  .subscribe-section {
+    background: linear-gradient(45deg, #2563eb, #9333ea);
+    border-radius: 20px;
+    padding: 38px 24px;
+    max-width: 1120px;
+    margin: 0 auto 60px;
+    text-align: center;
+    user-select: none;
+  }
+  .subscribe-section h2 {
+    font-weight: 900;
+    font-size: 1.75rem;
+    margin: 0 0 12px;
+  }
+  .subscribe-section p {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 24px;
+    opacity: 0.9;
+  }
+  form.subscribe-form {
+    display: inline-flex;
+    gap: 4px;
+    width: 100%;
+    max-width: 460px;
+  }
+  form.subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 14px 24px;
+    border-radius: 40px;
+    border: none;
+    font-size: 1rem;
+    outline-offset: 3px;
+    outline-color: transparent;
+  }
+  form.subscribe-form input[type="email"]:focus {
+    outline-color: #9333ea;
+  }
+  form.subscribe-form button {
+    padding: 0 28px;
+    border-radius: 40px;
+    border: none;
+    background: #f43f5e;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  form.subscribe-form button:hover,
+  form.subscribe-form button:focus {
+    background: #d02648;
+    outline: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .cards-row,
+    .nav-links {
+      gap: 12px;
+    }
+    .cards-row {
+      scroll-padding-left: 14px;
+    }
+    .card {
+      min-width: 140px;
+      height: 320px;
+    }
+    .card img {
+      height: 210px;
+    }
+    .grid-cards {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .grid-card img {
+      height: 160px;
+    }
+    
+  }
+  
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
+}
+  
+
+/* ADD: Yellow border to grid cards */
+.grid-card {
+  border: 2px solid #facc15;
+}
+
+/* Optional: glow effect on hover */
+.grid-card:hover {
+  border-color: #fde047;
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
+}
+
+
+
+
+
+
+
+
+/* Fix card height */
+.grid-card {
+  position: relative;
+  height: 260px; /* adjust if needed */
+}
+
+/* Image full cover kare */
+.grid-card img {
+  height: 100%;
+  object-fit: cover;
+}
+    /* Make full image visible + overlay text */
+.grid-card {
+  position: relative;
+}
+
+.grid-card-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+/* Text color fix */
+.grid-card-info h4 {
+  color: white;
+}
+
+.grid-card-info .year {
+  color: #d1d5db;
+}
+    
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <div class="logo" tabindex="0">Lokar Anime</div>
+  
+  
+  <div class="donate-wrapper">
+    <button id="btn" class="donate-btn">❤️ Donate</button>
+
+    <div id="qrBox" class="qr-box">
+      <h3>Enter amount & Scan QR 💙</h3>
+
+      <input type="number" id="amount" placeholder="₹ Amount">
+
+      <img id="qr"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9818284193@axl&pn=LOKESH&cu=INR">
+    </div>
+  </div>
+  
+  
+  <div class="search-container">
+  <input type="text" id="searchBox" placeholder="Search anime..." />
+  <div id="searchResults" class="search-results"></div>
+</div>
+  
+  
+  
+  <ul class="nav-links" id="nav-links">
+    <li tabindex="0">Home</li>
+    <li tabindex="0">Genre</li>
+    <li tabindex="0">Hindi Dub</li>
+    <li tabindex="0">Fan Dub</li>
+    <li tabindex="0">Movies</li>
+    
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section id="hero" class="hero" aria-label="Discover your favorite movies">
+  <h1>Discover Your Next <br /><span class="highlight">Favorite Movie</span></h1>
+  <p>Browse Movies</p>
+  <div class="btn-group" role="list">
+    <button onclick="window.location.href='ecchi.html'" tabindex="0" role="button">Ecchi</button>
+    <button onclick="window.location.href='cartoon.html'" tabindex="0" role="button">Cartoon</button>
+    <button onclick="window.location.href='movies.html'" tabindex="0" role="button">Movies</button>
+    <button onclick="window.location.href='premium.html'" tabindex="0" role="button">Premium</button>
+  </div>
+</section>
+<section aria-labelledby="trending-title">
+  <h2 id="trending-title" class="section-title"><span class="emoji" aria-hidden="true">🔥</span> Top 10 Trending Anime</h2>
+  <div class="cards-row" id="trending-row" role="list">
+    <a class="card" href="https://t.me/+Bcf6QrzZSgs1NjQ9" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #1 Naruto">
+      <img src="https://image.tmdb.org/t/p/w342/xppeysfvDKVx775MFuH8Z9BlpMk.jpg" alt="Naruto cover image" loading="lazy" />
+      <span class="badge-number">#1</span>
+      <div class="card-info">
+        <h3>Naruto</h3>
+        <div class="year">2002</div>
+        <div class="genres"><span>Action</span> <span>Adventure</span></div>
+        <div class="rating">⭐️ 8.2</div>
+      </div>
+    </a>
+    
+    <a class="card" href="https://t.me/+OGghb2EejaFiODA1" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #2 One Punch Man">
+      <img src="https://image.tmdb.org/t/p/w342/jbYJuxfZMpYDalkiOnBcCv9TaL.jpg" alt="One Punch Man cover image" loading="lazy" />
+      <span class="badge-number">#2</span>
+      <div class="card-info">
+        <h3>One Punch Man</h3>
+        <div class="year">2015</div>
+        <div class="genres"><span>Action</span> <span>Comedy</span></div>
+        <div class="rating">⭐️ 8.8</div>
+      </div>
+    </a>
+    <a class="card" href="https://t.me/+dbSVgzXasEI4OTQ1" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #3 My Hero Academia">
+      <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSFT-FI5NS0CnkkJ2Ui-EjsPNrheti93FAQ-u8ZmQwsNGPhGiyp" alt="My Hero Academia cover image" loading="lazy" />
+      <span class="badge-number">#3</span>
+      <div class="card-info">
+        <h3>My Hero Academia</h3>
+        <div class="year">2016</div>
+        <div class="genres"><span>Action</span> <span>Comedy</span></div>
+        <div class="rating">⭐️ 8.4</div>
+      </div>
+    </a>
+    
+    <a class="card" href="https://t.me/c/2195647495/3582" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #4 One Piece">
+      <img src="https://image.tmdb.org/t/p/w342/uiIB9ctqZFbfRXXimtpmZb5dusi.jpg" alt="One Piece cover image" loading="lazy" />
+      <span class="badge-number">#4</span>
+      <div class="card-info">
+        <h3>One Piece</h3>
+        <div class="year">1999</div>
+        <div class="genres"><span>Action</span> <span>Comedy</span></div>
+        <div class="rating">⭐️ 8.9</div>
+      </div>
+    </a>
+    
+    <a class="card" href="https://t.me/+6E0xbWu0m9czZDA9" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #5 Death Note">
+      <img src="https://image.tmdb.org/t/p/w440_and_h660_face/u878Dny3e6ajNGLeJJcYq9c60SP.jpg" alt="Death Note cover image" loading="lazy" />
+      <span class="badge-number">#5</span>
+      <div class="card-info">
+        <h3>Death Note</h3>
+        <div class="year">2006</div>
+        <div class="genres"><span>Thriller</span> <span>Dark</span></div>
+        <div class="rating">⭐️ 9</div>
+      </div>
+    </a>
+    <a class="card" href="https://t.me/+moDeNzKoSeNiMWE1" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #6 Demon Slayer">
+      <img src="https://image.tmdb.org/t/p/w500/ctR9Kv2MNhuIjgb96wARbT1BNts.jpg" alt="Demon Slayer cover image" loading="lazy" />
+      <span class="badge-number">#6</span>
+      <div class="card-info">
+        <h3>Demon Slayer</h3>
+        <div class="year">2019</div>
+        <div class="genres"><span>Action</span> <span>Adventure</span></div>
+        <div class="rating">⭐️ 8.7</div>
+      </div>
+    </a>
+    <a class="card" href="https://t.me/+uIioJH9Wi7Y1NGI1" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #7 Attack on Titan">
+      <img src="https://image.tmdb.org/t/p/w400/gC78bsXhdU2PwT3FkLcn8R5YcHb.jpg" alt="Attack on Titan cover image" loading="lazy" />
+<span class="badge-number">#7</span>
+      <div class="card-info">
+        <h3>Attack on Titan</h3>
+        <div class="year">2013</div>
+        <div class="genres"><span>Action</span> <span>Drama</span></div>
+        <div class="rating">⭐️ 9.0</div>
+      </div>
+    </a>
+    <a class="card" href="https://t.me/+Zwx2zRja4rtlYzFl" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #8 Sword Art Online">
+      <img src="https://image.tmdb.org/t/p/w500/mK9zGGk90VmHLOnK79sqlGFjZjW.jpg" loading="lazy" />
+      <span class="badge-number">#8</span>
+      <div class="card-info">
+        <h3>Sword Art Online</h3>
+        <div class="year">2012</div>
+        <div class="genres"><span>Action</span> <span>Fantasy</span></div>
+        <div class="rating">⭐️ 7.5</div>
+      </div>
+    </a>
+    <a class="card" href="https://t.me/+JAG6rSRAwgo2NTJl" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #9 Tokyo Ghoul">
+      <img src="https://image.tmdb.org/t/p/w400/c7B7hHZaP5UbTfoWAe7GUZMyJEH.jpg" alt="Tokyo Ghoul cover image" loading="lazy" />
+      <span class="badge-number">#9</span>
+      <div class="card-info">
+        <h3>Tokyo Ghoul</h3>
+        <div class="year">2014</div>
+        <div class="genres"><span>Horror</span> <span>Action</span></div>
+        <div class="rating">⭐️ 7.9</div>
+      </div>
+    </a>
+    <a class="card" href="https://t.me/+Aljzh5CvoFYxNTZl" target="_blank" rel="noopener" tabindex="0" aria-label="Trending anime #10 Fullmetal Alchemist: Brotherhood">
+      <img src="https://image.tmdb.org/t/p/w400/fu32TnQCWdbyJDRTO40NXOcwJKo.jpgy" alt="Fullmetal Alchemist Brotherhood cover image" loading="lazy" />
+      <span class="badge-number">#10</span>
+      <div class="card-info">
+        <h3>Fullmetal Alchemist: Brotherhood</h3>
+        <div class="year">2009</div>
+        <div class="genres"><span>Action</span> <span>Adventure</span></div>
+        <div class="rating">⭐️ 9.1</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section aria-labelledby="recent-series-title">
+  <h2 id="recent-series-title" class="section-title"><span class="emoji" aria-hidden="true">📺</span> Recent Series</h2>
+  <div class="grid-cards" role="list">
+    <a class="grid-card" href="https://t.me/+aTuTGEkq3WxlMDQ1" target="_blank" rel="noopener" tabindex="0" aria-label="Chainsaw Man 2022 12 episodes">
+      <img src="https://image.tmdb.org/t/p/w500/npdB6eFzizki0WaZ1OvKcJrWe97.jpg" alt="Chainsaw Man cover image"/>
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Chainsaw Man</h4>
+        <div class="year">2022</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+8h6JoqBR7v83YTJl" target="_blank" rel="noopener" tabindex="0" aria-label="Spy x Family 2022 25 episodes">
+      <img src="https://image.tmdb.org/t/p/w500/7NAvPYPAu7MeHwP8E9sn81PqsRh.jpg" alt="Spy x Family cover image"/>
+      <span class="badge-episode">25 EP</span>
+      <div class="grid-card-info">
+        <h4>Spy x Family</h4>
+        <div class="year">2022</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+oNP75yBjl_Q0ZThl" target="_blank" rel="noopener" tabindex="0" aria-label="Bleach: Thousand-Year Blood War 2022 13 episodes">
+      <img src="https://image.tmdb.org/t/p/w500/2EewmxXe72ogD0EaWM8gqa0ccIw.jpg" alt="Bleach Thousand-Year Blood War cover image"/>
+      <span class="badge-episode">13 EP</span>
+      <div class="grid-card-info">
+        <h4>Bleach: Thousand-Year Blood War</h4>
+        <div class="year">2022</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+pGW8GRTh4bZlNmM1" target="_blank" rel="noopener" tabindex="0" aria-label="Vinland Saga Season 2 2023 24 episodes">
+      <img src="https://image.tmdb.org/t/p/w342/kuTXfeVHNKjd7ejYHEDkHF8OFpc.jpg" alt="Vinland Saga Season 2 cover image"/>
+<span class="badge-episode">24 EP</span>
+      <div class="grid-card-info">
+        <h4>Vinland Saga Season 2</h4>
+        <div class="year">2023</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+WuV458hIK1g1N2Q1" target="_blank" rel="noopener" tabindex="0" aria-label="*****'s Paradise 2023 13 episodes">
+      <img src="https://m.media-amazon.com/images/I/51VRBvT0dNL._AC_UF894,1000_QL80_.jpg" alt="Rent-A-Girlfriend"/>
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Rent-A-Girlfriend</h4>
+        <div class="year">2020</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+XwXhyp_S55BmOGFl" target="_blank" rel="noopener" tabindex="0" aria-label="The Eminence in Shadow 2022 20 episodes">
+      <img src="https://animesuge.com.in/wp-content/uploads/2025/08/the-eminence-in-shadow-2022.jpg.webp" alt="The Eminence in Shadow cover image"/>
+      <span class="badge-episode">20 EP</span>
+      <div class="grid-card-info">
+        <h4>The Eminence in Shadow</h4>
+        <div class="year">2022</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section aria-labelledby="anime-movies-title">
+  <h2 id="anime-movies-title" class="section-title"><span class="emoji" aria-hidden="true">🎬</span> Anime Movies</h2>
+  <div class="grid-cards" role="list">
+    <a class="grid-card" href="https://t.me/+bSzVtdeB75Y0OGE9" target="_blank" rel="noopener" tabindex="0" aria-label="Demon Slayer Mugen Train 2020 duration 117 minutes">
+      <img src="https://m.media-amazon.com/images/S/pv-target-images/4a82ee31c8aea0161341732a02074166039609b3c1cacaf448ba8bd1041345ad.jpg" alt="The Tunnel to Summer, the Exit of Goodbyes" />
+      <span class="badge-duration">85 min</span>
+      <div class="grid-card-info">
+        <h4>The Tunnel to Summer, the Exit of Goodbyes</h4>
+        <div class="year">2022</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+LZ8EQ8eJerpmZTNl" target="_blank" rel="noopener" tabindex="0" aria-label="Your Name 2016 duration 106 minutes">
+      <img src="https://image.tmdb.org/t/p/w185/q719jXXEzOoYaps6babgKnONONX.jpg" alt="Your Name cover" />
+      <span class="badge-duration">106 min</span>
+      <div class="grid-card-info">
+        <h4>Your Name</h4>
+        <div class="year">2016</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+Tn2g6bLCtodkNGJl" target="_blank" rel="noopener" tabindex="0" aria-label="Spirited Away 2001 duration 125 minutes">
+      <img src="https://image.tmdb.org/t/p/w185/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg" alt="Spirited Away cover" />
+      <span class="badge-duration">125 min</span>
+      <div class="grid-card-info">
+        <h4>Spirited Away</h4>
+        <div class="year">2001</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+Zb-rlxkt8oIzMDE1" target="_blank" rel="noopener" tabindex="0" aria-label="A Silent Voice 2016 duration 130 minutes">
+      <img src="https://image.tmdb.org/t/p/w342/tuFaWiqX0TXoWu7DGNcmX3UW7sT.jpg" alt="A Silent Voice cover" />
+      <span class="badge-duration">130 min</span>
+      <div class="grid-card-info">
+        <h4>A Silent Voice</h4>
+        <div class="year">2016</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+H07SceYIfD44NDdl" target="_blank" rel="noopener" tabindex="0" aria-label="Weathering with You 2019 duration 112 minutes">
+      <img src="https://image.tmdb.org/t/p/w185/qgrk7r1fV4IjuoeiGS5HOhXNdLJ.jpg" alt="Weathering with You cover" />
+      <span class="badge-duration">112 min</span>
+      <div class="grid-card-info">
+        <h4>Weathering with You</h4>
+        <div class="year">2019</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+emgz6s7JXqUzZTU1" target="_blank" rel="noopener" tabindex="0" aria-label="Jujutsu Kaisen 0 2021 duration 105 minutes">
+<img src="https://image.tmdb.org/t/p/w342/8ciSABYn5ANts75wny70HGIyrz5.jpg" alt="The Garden of Words" />
+      <span class="badge-duration">46 min</span>
+      <div class="grid-card-info">
+        <h4>The Garden of Words</h4>
+        <div class="year">2013</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section aria-labelledby="fan-dub-title">
+  <h2 id="fan-dub-title" class="section-title"><span class="emoji" aria-hidden="true">🎙</span> Fan Dub Collection</h2>
+  <div class="grid-cards" role="list">
+    <a class="grid-card" href="https://t.me/+WU4Wat3rNco5N2Y1" target="_blank" rel="noopener" tabindex="0" aria-label="Chainsaw Man 2022 12 episodes">
+      <img src="https://image.tmdb.org/t/p/w500/9muUVVBl5gpBzZTGUmvjzKWUge9.jpg" alt="Ghost at SChool" />
+      <span class="badge-episode">20 EP</span>
+      <div class="grid-card-info">
+        <h4>Ghost at School</h4>
+        <div class="year">2000</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+_sXL6CCgdsQ0MGE1" target="_blank" rel="noopener" tabindex="0" aria-label="Spy x Family 2022 25 episodes">
+      <img src="https://uploads.onecompiler.io/44jerebwa/44m5huhuv/kingdom.jpg" alt="The Kingdoms of Ruin" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>The Kingdoms of Ruin</h4>
+        <div class="year">2023</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+zp6-ptGP1GMzM2I1" target="_blank" rel="noopener" tabindex="0" aria-label="Bleach: Thousand-Year Blood War 2022 13 episodes">
+      <img src="https://uploads.onecompiler.io/44jerebwa/44jerfxbk/cropse%20party.jpg" alt="Corpse Party: Tortured Souls" />
+      <span class="badge-episode">4 EP</span>
+      <div class="grid-card-info">
+        <h4>Corpse Party: Tortured Souls</h4>
+        <div class="year">2013</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+d9ReW7fAel05ZWI1" target="_blank" rel="noopener" tabindex="0" aria-label="Vinland Saga Season 2 2023 24 episodes">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnu2CxV6p2gNKLDpkTD26eB_hz0FBlH0Iq5Q&s" alt="Link Click" />
+      <span class="badge-episode">13 EP</span>
+      <div class="grid-card-info">
+        <h4>Link Click</h4>
+        <div class="year">2013</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+o6nVZHM5ofplZjY1" target="_blank" rel="noopener" tabindex="0" aria-label="The Eminence in Shadow 2022 20 episodes">
+      <img src="https://image.tmdb.org/t/p/original/2fJ9W3fZDmCxWVLSSs8CCMlDK0o.jpg" alt="91 Days" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>91 Days</h4>
+        <div class="year">2016</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+RmuA4WOYMFQyNjI1" target="_blank" rel="noopener" tabindex="0" aria-label="Demon Slayer Mugen Train 2020 duration 117 minutes">
+      <img src="https://image.tmdb.org/t/p/w342/qKc1aNRCb6kPsUl1tbkPGwstHEk.jpg" alt="Paprika" />
+      <span class="badge-duration">90 min</span>
+      <div class="grid-card-info">
+        <h4>Paprika</h4>
+        <div class="year">2006</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+SMbjdNohPic1ZTU1" target="_blank" rel="noopener" tabindex="0" aria-label="Your Name 2016 duration 106 minutes">
+      <img src="https://m.media-amazon.com/images/M/MV5BZTRkZGU0ZDUtMzFhYi00YjFiLWI2ZDUtODVjYzg0ZWQ0ZTcwXkEyXkFqcGc@._V1_.jpg" alt="The anthem of the heart" />
+      <span class="badge-duration">119 min</span>
+      <div class="grid-card-info">
+        <h4>The anthem of the heart</h4>
+        <div class="year">2015</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+tZCiD9AIjZtlOWNl" target="_blank" rel="noopener" tabindex="0" aria-label="Spirited Away 2001 duration 125 minutes">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiSik6eVvj6u6f9kGMZMyVIKs4lkel8TK9Tg&s" alt="kizumonogatari" />
+      <span class="badge-duration">83 min</span>
+      <div class="grid-card-info">
+        <h4>kizumonogatari</h4>
+        <div class="year">2016</div>
+      </div>
+    </a>
+    
+    <a class="grid-card" href="https://t.me/+o6nVZHM5ofplZjY1" target="_blank" rel="noopener" tabindex="0" aria-label="The Eminence in Shadow 2022 20 episodes">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDFiMTFkOWItMTY3ZC00M2VhLWE5ZGUtNWVlMTc5ZWRiODNlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Orange" />
+      <span class="badge-episode">13 EP</span>
+      <div class="grid-card-info">
+        <h4>Orange</h4>
+        <div class="year">2016</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+RmuA4WOYMFQyNjI1" target="_blank" rel="noopener" tabindex="0" aria-label="Demon Slayer Mugen Train 2020 duration 117 minutes">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdb4H0fmZGWox4ZJAkPVI33d8568vqM2kqLQ&s" alt="Inuyashiki" />
+      <span class="badge-duration">11 EP</span>
+      <div class="grid-card-info">
+        <h4>Inuyashiki</h4>
+        <div class="year">2017</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+SMbjdNohPic1ZTU1" target="_blank" rel="noopener" tabindex="0" aria-label="Your Name 2016 duration 106 minutes">
+      <img src="https://m.media-amazon.com/images/I/6166qTGjb+L._AC_UF894,1000_QL80_.jpg" alt="Pluto" />
+      <span class="badge-duration">8 EP</span>
+      <div class="grid-card-info">
+        <h4>Pluto</h4>
+        <div class="year">2023</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+tZCiD9AIjZtlOWNl" target="_blank" rel="noopener" tabindex="0" aria-label="Spirited Away 2001 duration 125 minutes">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8pZjVH3XXN_ut3bOOvCUBp1GEnkF6GalDkg&s" alt="7th Time Loop" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>7th time loop</h4>
+        <div class="year">2024</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section aria-labelledby="hindi-dub-title">
+  <h2 id="hindi-dub-title" class="section-title"><span class="emoji" aria-hidden="true">🇮🇳</span> Hindi Dub Collection</h2>
+  <div class="grid-cards" role="list">
+    <a class="grid-card" href="https://t.me/+IpCJMNo6Ta9lNDZl" target="_blank" rel="noopener" tabindex="0" aria-label="Chainsaw Man 2022 12 episodes">
+      <img src="https://image.tmdb.org/t/p/w500/8gCOlj0bXa2cQnXSl4wRX5tVIA0.jpg" alt="The Detective Is Already Dead" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>The Detective Is Already Dead</h4>
+        <div class="year">2021</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+PJ09_pC2qnw3NWQ1" target="_blank" rel="noopener" tabindex="0" aria-label="Bleach: Thousand-Year Blood War 2022 13 episodes">
+      <img src="https://images.justwatch.com/poster/315734936/s718/season-1.jpg" alt="An Archdemon's Dilemma: How to Love Your Elf Bride" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>An Archdemon's Dilemma: How to Love Your Elf Bride</h4>
+        <div class="year">2024</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+W4yruF8nLyZjNTc9" target="_blank" rel="noopener" tabindex="0" aria-label="*****'s Paradise 2023 13 episodes">
+      <img src="https://image.tmdb.org/t/p/w500/oGTihBVxHROSWa1WJnireCbl0KQ.jpg" alt="TSUKIMICHI -Moonlit Fantasy" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>TSUKIMICHI -Moonlit Fantasy</h4>
+        <div class="year">2021</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+nP4FHTKux-w2ZWI1" target="_blank" rel="noopener" tabindex="0" aria-label="Demon Slayer Mugen Train 2020 duration 117 minutes">
+      <img src="https://image.tmdb.org/t/p/w500/wc1PaImHVXIESClpEDwNI1mlYuC.jpg" alt="Terror in Resonance" />
+      <span class="badge-duration">11 EP</span>
+      <div class="grid-card-info">
+        <h4>Terror in Resonance</h4>
+        <div class="year">2014</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+1FZKzI5PLq0wNGY1" target="_blank" rel="noopener" tabindex="0" aria-label="Your Name 2016 duration 106 minutes">
+      <img src="https://image.tmdb.org/t/p/w500/qkoM63HDuCOSwxGfb0pljrgns9I.jpg" alt="Lookism" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Lookism</h4>
+        <div class="year">2022</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+_20GVqGIamhiYjNl" target="_blank" rel="noopener" tabindex="0" aria-label="Spirited Away 2001 duration 125 minutes">
+      <img src="https://image.tmdb.org/t/p/w500/3NYB8HfKALKQ4cHGx8Rx4Dhd0YE.jpg" alt="Tokyo 24th Ward" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Tokyo 24th Ward</h4>
+        <div class="year">2022</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+dC9cP97hcvY0MjA9" target="_blank" rel="noopener" tabindex="0" aria-label="A Silent Voice 2016 duration 130 minutes">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLNDOeDCXmZVISUKtIpKg0qPx_1WJRMMqWoMzmBcuZG_imayhhXWpPLM0IYZ4VEYwHtg&s=10" alt="Death Parade" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Death Parade</h4>
+        <div class="year">2015</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+wb_0sSLkC-xlYmU1" target="_blank" rel="noopener" tabindex="0" aria-label="Weathering with You 2019 duration 112 minutes">
+<img src="https://image.tmdb.org/t/p/w500/arB3L9pZZBSzUPSC8BEv8c3X0bF.jpg" alt="Tokyo Revengers" />
+      <span class="badge-duration">24 EP</span>
+      <div class="grid-card-info">
+        <h4>Tokyo Revengers</h4>
+        <div class="year">2021</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+hWR22QSR_2YzYzhl" target="_blank" rel="noopener" tabindex="0" aria-label="Jujutsu Kaisen 0 2021 duration 105 minutes">
+      <img src="https://preview.redd.it/jujutsu-kaisen-season-1-rebroadcast-new-key-visual-v0-mtq857c121j91.jpg?auto=webp&s=01205a29e997f2f17e666a49fe79789a966ed9ca" alt="Jujutsu Kaisen" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Jujutsu Kaisen</h4>
+        <div class="year">2020</div>
+      </div>
+    </a>
+
+    <a class="grid-card" href="https://t.me/+RmuA4WOYMFQyNjI1" target="_blank" rel="noopener" tabindex="0" aria-label="Demon Slayer Mugen Train 2020 duration 117 minutes">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTllYTZkZDEtYjFmOC00ZDcyLThlYjktNDhjMDE3ZTdkODNlXkEyXkFqcGc@._V1_.jpg" alt="Wind Breaker" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Wind Breaker</h4>
+        <div class="year">2024</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+SMbjdNohPic1ZTU1" target="_blank" rel="noopener" tabindex="0" aria-label="Your Name 2016 duration 106 minutes">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWcUwHuK9ucO8OFye6aM00GeOq4k5OMsu6GQ&s" alt="Kaiju no 8" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Kaiju no 8</h4>
+        <div class="year">2024</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+tZCiD9AIjZtlOWNl" target="_blank" rel="noopener" tabindex="0" aria-label="Spirited Away 2001 duration 125 minutes">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrl6ksa-sIaToiGWE0YJopUBl2RgKdlKhJYg&s" alt="Viral Hit" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Viral Hit</h4>
+        <div class="year">2024</div>
+      </div>
+    </a>
+
+
+  </div>
+</section>
+
+
+
+
+
+<section aria-labelledby="hindi-dub-title">
+  <h2 id="hindi-dub-title" class="section-title"><span class="emoji" aria-hidden="true"></span> Recommended for You</h2>
+  <div class="grid-cards" role="list">
+    <a class="grid-card" href="https://t.me/+IpCJMNo6Ta9lNDZl" target="_blank" rel="noopener" tabindex="0" aria-label="Chainsaw Man 2022 12 episodes">
+      <img src="https://public-files.gumroad.com/g75cxfxagimeo1ovri7wt8mraqyc" alt="The Detective Is Already Dead" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #1</h4>
+         <div class="year">2021</div>
+         <div class="rating">⭐️ 4.8</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+PJ09_pC2qnw3NWQ1" target="_blank" rel="noopener" tabindex="0" aria-label="Bleach: Thousand-Year Blood War 2022 13 episodes">
+      <img src="https://i.ytimg.com/vi/LOQOhHi_UZc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCLCJAzCMEBegKjuf3-7Q_qVYHWrg" alt="An Archdemon's Dilemma: How to Love Your Elf Bride" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #2</h4>
+        <div class="year">2024</div>
+        <div class="rating">⭐️ 4.7</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+W4yruF8nLyZjNTc9" target="_blank" rel="noopener" tabindex="0" aria-label="*****'s Paradise 2023 13 episodes">
+      <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSqUsKXsAlXw2hg8SwtrfnPLT9VTEjXVXJKY9yWeUpq8vvzhMbK" alt="TSUKIMICHI -Moonlit Fantasy" />
+      <span class="badge-episode">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #3</h4>
+        <div class="year">2021</div>
+        <div class="rating">⭐️ 4.8</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+nP4FHTKux-w2ZWI1" target="_blank" rel="noopener" tabindex="0" aria-label="Demon Slayer Mugen Train 2020 duration 117 minutes">
+      <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSzS638_X4XNIsFimfd_esRLWhCnbXt2MizdFuOkA9kGpLDco5v" alt="Terror in Resonance" />
+      <span class="badge-duration">11 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #4</h4>
+        <div class="year">2014</div>
+        <div class="rating">⭐️ 4.7</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+1FZKzI5PLq0wNGY1" target="_blank" rel="noopener" tabindex="0" aria-label="Your Name 2016 duration 106 minutes">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf69mlVsfjEPhZvAuuZErunT4igCSTr6FdzA&s" alt="Lookism" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #5</h4>
+        <div class="year">2022</div>
+        <div class="rating">⭐️ 4.5</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+_20GVqGIamhiYjNl" target="_blank" rel="noopener" tabindex="0" aria-label="Spirited Away 2001 duration 125 minutes">
+      <img src="https://kotaku.com/igdb/image/upload/t_720p/sc980f.jpg" alt="Tokyo 24th Ward" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #6</h4>
+        <div class="year">2022</div>
+        <div class="rating">⭐️ 4.8</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+dC9cP97hcvY0MjA9" target="_blank" rel="noopener" tabindex="0" aria-label="A Silent Voice 2016 duration 130 minutes">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyXDe3W63zBmsVKqx4tdQoDzLm0J4yygW7FQ&s" alt="Death Parade" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #7</h4>
+        <div class="year">2015</div>
+        <div class="rating">⭐️ 4.8</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+wb_0sSLkC-xlYmU1" target="_blank" rel="noopener" tabindex="0" aria-label="Weathering with You 2019 duration 112 minutes">
+<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQWX5iwDSptR8szUYaeWDG2_BJACmT6J7m6enFQbpPwasbpKOc2" alt="Tokyo Revengers" />
+      <span class="badge-duration">24 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #8</h4>
+        <div class="year">2021</div>
+        <div class="rating">⭐️ 4.0</div>
+      </div>
+    </a>
+    <a class="grid-card" href="https://t.me/+hWR22QSR_2YzYzhl" target="_blank" rel="noopener" tabindex="0" aria-label="Jujutsu Kaisen 0 2021 duration 105 minutes">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0LTg9y7fZCoOLsOijjQXud4oTnXm3B2AT-A&s" alt="Jujutsu Kaisen" />
+      <span class="badge-duration">12 EP</span>
+      <div class="grid-card-info">
+        <h4>Android Game #9</h4>
+        <div class="year">2020</div>
+        <div class="rating">⭐️ 4.1</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="browse-genre-title" aria-labelledby="browse-genre-title">
+  <h2 class="section-title">Browse by Genre</h2>
+  <div class="genre-grid">
+    <div class="genre-card genre-action" onclick="window.location.href='action.html'" tabindex="0" role="button">
+      <div class="genre-icon">⚔️</div>
+      <div class="genre-label">Action</div>
+      <div class="genre-explore">Explore &gt;</div>
+    </div>
+    <div class="genre-card genre-comedy" onclick="window.location.href='comedy.html'" tabindex="0" role="button">
+      <div class="genre-icon">😂</div>
+      <div class="genre-label">Comedy</div>
+      <div class="genre-explore">Explore &gt;</div>
+    </div>
+    <div class="genre-card genre-romance" onclick="window.location.href='romance.html'" tabindex="0" role="button">
+      <div class="genre-icon">💕</div>
+      <div class="genre-label">Romance</div>
+      <div class="genre-explore">Explore &gt;</div>
+    </div>
+    <div class="genre-card genre-thriller" onclick="window.location.href='thriller.html'" tabindex="0" role="button">
+      <div class="genre-icon">🔪</div>
+      <div class="genre-label">Thriller</div>
+      <div class="genre-explore">Explore &gt;</div>
+    </div>
+    <div class="genre-card genre-isekai" onclick="window.location.href='isekai.html'" tabindex="0" role="button">
+      <div class="genre-icon">🌟</div>
+      <div class="genre-label">Isekai</div>
+      <div class="genre-explore">Explore &gt;</div>
+    </div>
+    <div class="genre-card genre-dark" onclick="window.location.href='dark.html'" tabindex="0" role="button">
+      <div class="genre-icon">🌙</div>
+      <div class="genre-label">Dark</div>
+      <div class="genre-explore">Explore &gt;</div>
+    </div>
+    <div class="genre-card genre-horror" onclick="window.location.href='horror.html'" tabindex="0" role="button">
+      <div class="genre-icon">👻</div>
+      <div class="genre-label">Horror</div>
+      <div class="genre-explore">Explore &gt;</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-left">
+      <h3>Lokar Anime</h3>
+      <p>Watch trending anime, movies and Hindi dubbed series anytime.</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">Genre</a>
+      <a href="#">Movies</a>
+      <a href="#">Hindi Dub</a>
+    </div>
+
+    <div class="footer-social">
+      <a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-twitter"></a>
+    <a href="#" class="fa fa-youtube"></a>
+<a href="#" class="fa fa-instagram"></a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Lokar Anime. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  
+  const btn = document.getElementById("btn");
+const qrBox = document.getElementById("qrBox");
+const amount = document.getElementById("amount");
+const qr = document.getElementById("qr");
+
+const upiID = "9818284193@axl";
+const name = "LOKESH";
+
+btn.addEventListener("click", () => {
+  qrBox.classList.toggle("show");
+});
+
+amount.addEventListener("input", () => {
+  let val = amount.value || 0;
+
+  let upiLink = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(name)}&am=${val}&cu=INR`;
+
+  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
+           encodeURIComponent(upiLink);
+});
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  hamburger.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
+// AUTO SLIDE - Trending (Smooth & Slow)
+  const trendingRow = document.getElementById('trending-row');
+  let autoInterval;
+  function startAutoSlide() {
+    autoInterval = setInterval(() => {
+      const cardWidth = 194; // card width + gap
+      const maxScroll = trendingRow.scrollWidth - trendingRow.clientWidth;
+
+      if (trendingRow.scrollLeft + trendingRow.clientWidth >= maxScroll) {
+        trendingRow.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        trendingRow.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }, 3000);
+  }
+  trendingRow.addEventListener('mouseenter', () => clearInterval(autoInterval));
+  trendingRow.addEventListener('mouseleave', startAutoSlide);
+  startAutoSlide();
+
+  // SMOOTH SLIDE for Navbar items (simple li click)
+  const navItems = document.querySelectorAll('.nav-links li');
+  navItems.forEach(item => {
+    item.addEventListener('click', function() {
+      let targetId = '';
+      const text = this.textContent.trim();
+
+      if (text === 'Home') targetId = 'hero';
+      else if (text === 'Genre') targetId = 'browse-genre-title';
+      else if (text === 'Hindi Dub') targetId = 'hindi-dub-title';
+      else if (text === 'Fan Dub') targetId = 'fan-dub-title';
+      else if (text === 'Movies') targetId = 'anime-movies-title';
+
+      if (targetId) {
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+
+const searchBox = document.getElementById("searchBox");
+const resultsBox = document.getElementById("searchResults");
+
+const cards = document.querySelectorAll(".card, .grid-card");
+
+
+/* new search other page also 
+
+title isliye kya search karege link isliye kya open hoga bus
+
+*/
+
+const animeList = [
+ { title: "Trapped in a Dating Sim: The World of Otome Games Is Tough for Mobs", link: "https://t.me/+uEbg3PwF3rU1NDA1" },
+{ title: "Darling in the FranXX", link: "https://t.me/+GyPKW9oiMUcxYzNl" },
+{ title: "Viper Creed.", link: "https://t.me/+MOIuW0ogj80zNTM9" },
+{ title: "Toilet-Bound Hanako-Kun", link: "https://t.me/+d_OMyGwNSeUyNjhl" },
+{ title: "ReLIFE", link: "https://t.me/+J1gSkP_jdzBkZDg1" },
+{ title: "Mob Psycho 100", link: "https://t.me/+X1utqVJiKyYxYmJl" },
+{ title: "After School Dice Club", link: "https://t.me/+ccAa_y8MGvtlNmE1" },
+{ title: "Vinland Saga", link: "https://t.me/+pGW8GRTh4bZlNmM1" },
+{ title: "Black clover", link: "https://t.me/+Jws82OAP4XQ4MmE9" },
+{ title: "KamiKatsu: Working for God in a Godless World.", link: "https://t.me/+DRUECdTF9PAwYmJl" },
+{ title: "My Love Story With Yamada-kun at Lv999.", link: "https://t.me/+pHLEvhxMDJlhMGI1" },
+{ title: "That Time I Got Reincarnated as a Slime", link: "https://t.me/+sQHZhOeE_vZkMjNl" },
+{ title: "Why Raeliana Ended Up at the Duke's Mansion.", link: "https://t.me/+qCBhUUy4w-RkYmI1" },
+{ title: "My One Hit Kill Sister", link: "https://t.me/+ybs6fjW3PshmYzY9" },
+{ title: "Akudama Drive.", link: "https://t.me/+2EYWgJjhwvJmZGVl" },
+{ title: "A Couple of Cuckoos.", link: "https://t.me/+dRZUgqA3kM43ZDZl" },
+{ title: "Radiant", link: "https://t.me/+3oU0D9R6yVxiZWM9" },
+{ title: "The Case Study of Vanitas.", link: "https://t.me/+h4Dmken-iJxjNTNl" },
+{ title: "Hunter X Hunter.", link: "https://t.me/+QcKNabYyNJlkZWRl" },
+{ title: "Mashle: Magic and Muscles.", link: "https://t.me/+Z7soY9w96ns4ZTY1" },
+{ title: "Overload", link: "https://t.me/+xVb8Ju8HXT85MmQ9" },
+{ title: "Mobile Suit Gundam: The Witch from Mercury.", link: "https://t.me/+Ke-uh5Q08Pk4OGY1" },
+{ title: "My Unique Skill Makes Me OP Even at Level 1.", link: "https://t.me/+ygaOF7vISQIwMzRl" },
+{ title: "Zom 100: Bucket List of the Dead.", link: "https://t.me/+U51z3qR72-M5MGRl" },
+{ title: "Horimiya", link: "https://t.me/+6XifFadWkBs5YzM1" },
+{ title: "Demon Slayer.", link: "https://t.me/+moDeNzKoSeNiMWE1" },
+{ title: "Masamune-kun's Revenge.", link: "https://t.me/+uE_3TKSVGBo4ZWM1" },
+{ title: "Classroom Of The Elite", link: "https://t.me/+XmHeWEknLW4xMjE1" },
+{ title: "Rent A Girlfriend.", link: "https://t.me/+WuV458hIK1g1N2Q1" },
+{ title: "The Great Cleric.", link: "https://t.me/+kTFL62g7d7hlZGY9" },
+{ title: "Fire Force.", link: "https://t.me/+s3L8vAAJpO5jZDg1" },
+{ title: "One Piece.", link: "https://t.me/+oQvXu9Vf_1c2ZmNl" },
+{ title: "Rurouni Kenshin.", link: "https://t.me/+CMiLXqxtbSM0ZGNl" },
+{ title: "Reign Of The Seven Spellblades.", link: "https://t.me/+YI-aaHe6MBAxNjhl" },
+{ title: "My Dress Up Darling.", link: "https://t.me/+kqZ2grbXUo1hOGM1" },
+{ title: "Valkyria chronicles", link: "https://t.me/+9F05pJpbwug2MjM9" },
+{ title: "My Tiny Senpai.", link: "https://t.me/+R5TrZPJ72FQ3MzRl" },
+{ title: "Reborn as a Vending Machine, I Now Wander the Dungeon.", link: "https://t.me/+KYzV8tvMVkY1YmQ1" },
+{ title: "Jujutsu kaisen.", link: "https://t.me/+hWR22QSR_2YzYzhl" },
+{ title: "Chainsaw Man.", link: "https://t.me/+aTuTGEkq3WxlMDQ1" },
+{ title: "Lookism", link: "https://t.me/+1FZKzI5PLq0wNGY1" },
+{ title: "Mushoku Tensei Jobless Reincarnation", link: "https://t.me/+3By-zZF_2nY2Yzc1" },
+{ title: "My Happy Marriage.", link: "https://t.me/+9iE0JTqPZ7ZiZjZl" },
+{ title: "The Detective Is Already Dead.", link: "https://t.me/+IpCJMNo6Ta9lNDZl" },
+{ title: "Classroom for Heroes", link: "https://t.me/+9Zj6et4LrRkxYTRl" },
+{ title: "Code Geass: Lelouch of the Rebellion", link: "https://t.me/+gr53W6ZDl9g3M2I1" },
+{ title: "My Hero Academia", link: "https://t.me/+dbSVgzXasEI4OTQ1" }
+];
+
+
+
+/*
+ let animeList = [];
+
+cards.forEach(card => {
+  const titleElement = card.querySelector("h3, h4");
+  const title = titleElement ? titleElement.innerText.trim() : "";
+
+  const parentLink = card.closest("a");
+  const link = parentLink ? parentLink.href : "#";
+
+  if (title) {
+    animeList.push({ title, link });
+  }
+});
+*/
+
+
+
+searchBox.addEventListener("input", function () {
+  const query = this.value.toLowerCase();
+  resultsBox.innerHTML = "";
+
+  if (query === "") {
+    resultsBox.style.display = "none";
+    return;
+  }
+
+  const filtered = animeList.filter(item =>
+    item.title.toLowerCase().includes(query)
+  );
+
+  filtered.slice(0, 8).forEach(item => {
+    const div = document.createElement("div");
+    div.classList.add("search-item");
+    div.innerText = item.title;
+
+    div.onclick = () => {
+      window.open(item.link, "_blank"); // 🔥 FIXED
+    };
+
+    resultsBox.appendChild(div);
+  });
+
+  resultsBox.style.display = filtered.length ? "block" : "none";
+});
+
+
+
+
+
+  // Subscribe form
+  document.getElementById('subscribe-form').addEventListener('submit', function(event){
+    event.preventDefault();
+    const emailInput = event.target.email;
+    if(emailInput.validity.valid){
+      alert('Thanks for subscribing with ' + emailInput.value + '!');
+      emailInput.value = '';
+    } else {
+      alert('Please enter a valid email address.');
+      emailInput.focus();
+    }
+  });
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"e3c1c9af36de41759418005494a48906","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

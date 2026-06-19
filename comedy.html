@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Action Anime - Lokar Anime</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #101828;
+    color: white;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111827;
+    padding: 14px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .logo { font-weight: 700; font-size: 1.3rem; }
+  .back-btn {
+    background: #34D399;
+    color: #111827;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title {
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 40px 0 20px;
+    text-align: center;
+    color: #facc15;
+  }
+
+  /* Grid - Exactly 5 cards per row */
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .action-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .action-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .action-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .card {
+    background-color: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgb(0 0 0 / 0.3);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+  }
+  .card:hover { transform: translateY(-8px); }
+
+  .card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .badge-number {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #FB8500;
+    padding: 5px 12px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+
+  .card-info {
+    padding: 14px;
+  }
+  .card-info h3 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-info .year {
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+  .rating {
+    margin-top: 8px;
+    color: #facc15;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Lokar Anime</div>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+</nav>
+
+<h2 class="section-title">😂 Genre: Comedy </h2>
+
+<div class="action-grid">
+  <!-- Row 1 - Card 1 to 5 -->
+  <a class="card" href="https://t.me/+uwZPsrBUO1NiYjZl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/vuKujQdZWoYsJjiDb2LJTaa1S2u.jpg" loading="lazy" />
+    <span class="badge-number">#1</span>
+    <div class="card-info">
+      <h3>ZENSHU</h3>
+      <div class="year">2025</div>
+      <div class="rating">⭐ 8.2</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+U51z3qR72-M5MGRl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/XzOeAppGpnsSAiK82idkg0BoCt.jpg" alt="My Hero Academia" loading="lazy" />
+    <span class="badge-number">#2</span>
+    <div class="card-info">
+      <h3>Zom 100: Bucket List of the Dead</h3>
+      <div class="year">2023</div>
+      <div class="rating">⭐ 8.4</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+M1gDEGDp2KZjMzdl" target="_blank" rel="noopener">
+    <img src="https://animedekho.app/wp-content/uploads/2024/05/a-salad.jpeg" alt="Demon Slayer" loading="lazy" />
+    <span class="badge-number">#3</span>
+    <div class="card-info">
+      <h3>A Salad Bowl of Eccentrics</h3>
+      <div class="year">2024</div>
+      <div class="rating">⭐ 8.7</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+Z7soY9w96ns4ZTY1" target="_blank" rel="noopener">
+    <img src="https://animesuge.com.in/wp-content/uploads/2025/08/mashle-magic-and-muscles-2023.jpg.webp" alt="Attack on Titan" loading="lazy" />
+    <span class="badge-number">#4</span>
+    <div class="card-info">
+      <h3>MASHLE: MAGIC AND MUSCLES</h3>
+      <div class="year">2023</div>
+      <div class="rating">⭐ 9.0</div>
+    </div>
+  </a>
+<a class="card" href="https://t.me/+ybs6fjW3PshmYzY9" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/hQEgYVrTUxV0yXqLxdwdXIaofGt.jpg" alt="One Punch Man" loading="lazy" />
+    <span class="badge-number">#5</span>
+    <div class="card-info">
+      <h3>My One-Hit Kill Sister</h3>
+      <div class="year">2023</div>
+      <div class="rating">⭐ 8.8</div>
+    </div>
+  </a>
+
+  <!-- Row 2 - Card 6 to 10 -->
+  <a class="card" href="https://t.me/+J1gSkP_jdzBkZDg1" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/aRK64bB8hMsuZZnitebPyKqOR5d.jpg" alt="One Piece" loading="lazy" />
+    <span class="badge-number">#6</span>
+    <div class="card-info">
+      <h3>ReLIFE</h3>
+      <div class="year">2016</div>
+      <div class="rating">⭐ 8.9</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+BvWTButmXbFmNjRl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/eilm1SsfGlKrdB4jZfo5stUfbgi.jpg" alt="Sword Art Online" loading="lazy" />
+    <span class="badge-number">#7</span>
+    <div class="card-info">
+      <h3>Miss Kuroitsu From the Monster Development Department</h3>
+      <div class="year">2022</div>
+      <div class="rating">⭐ 7.5</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+Jws82OAP4XQ4MmE9" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/yCk1EaEaH0kfyut1KBodZaReJ5z.jpg" alt="Tokyo Ghoul" loading="lazy" />
+    <span class="badge-number">#8</span>
+    <div class="card-info">
+      <h3>Black Clover</h3>
+      <div class="year">2017</div>
+      <div class="rating">⭐ 7.9</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+DzKKYk2iAy83NjE1" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/xp404PMU2cGsODMTIkkUizbYhcm.jpg" alt="Fullmetal Alchemist" loading="lazy" />
+    <span class="badge-number">#9</span>
+    <div class="card-info">
+      <h3>Handyman Saitou in Another World</h3>
+      <div class="year">2023</div>
+      <div class="rating">⭐ 9.1</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+Z8bPjTjgU6g2ZTJl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/uQEbcmuUwDfPiVUIRCF6d57eErM.jpg" alt="Jujutsu Kaisen" loading="lazy" />
+    <span class="badge-number">#10</span>
+    <div class="card-info">
+      <h3>The Wrong Way to Use Healing Magic</h3>
+      <div class="year">2024</div>
+      <div class="rating">⭐ 8.9</div>
+    </div>
+  </a>
+
+  <!-- Row 3 - Card 11 to 15 -->
+  <a class="card" href="https://t.me/+Bcf6QrzZSgs1NjQ9" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/xppeysfvDKVx775MFuH8Z9BlpMk.jpg" alt="Black Clover" loading="lazy" />
+    <span class="badge-number">#11</span>
+    <div class="card-info">
+      <h3>Naruto</h3>
+      <div class="year">2006</div>
+      <div class="rating">⭐ 8.1</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+ELruag29hJwxZmVl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/lMpWexSeAhtEho2KSSa1rhCUuAd.jpg" alt="Hunter x Hunter" loading="lazy" />
+    <span class="badge-number">#12</span>
+    <div class="card-info">
+      <h3>Kaguya-sama: Love Is War</h3>
+      <div class="year">2019</div>
+      <div class="rating">⭐ 9.1</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+s3L8vAAJpO5jZDg1" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/h9TN2BltJ9Q7FZ5BYGQcHfYfEGp.jpg" alt="Solo Leveling" loading="lazy" />
+    <span class="badge-number">#13</span>
+    <div class="card-info">
+      <h3>Tomo-chan Is a Girl!</h3>
+      <div class="year">2023</div>
+      <div class="rating">⭐ 9.0</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+W4yruF8nLyZjNTc9" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/GXPzNvuDGzWikMEduV99kocohn.jpg" alt="Kaiju No. 8" loading="lazy" />
+    <span class="badge-number">#14</span>
+    <div class="card-info">
+      <h3>Fire Force</h3>
+      <div class="year">2019</div>
+      <div class="rating">⭐ 8.8</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+J2q86CdWnTg1NThl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/oGTihBVxHROSWa1WJnireCbl0KQ.jpg" alt="Dr. Stone" loading="lazy" />
+    <span class="badge-number">#15</span>
+    <div class="card-info">
+      <h3>TSUKIMICHI -Moonlit Fantasy-</h3>
+      <div class="year">2021</div>
+      <div class="rating">⭐ 8.3</div>
+    </div>
+  </a>
+<!-- Row 4 - Card 16 to 20 -->
+  <a class="card" href="https://t.me/+d_OMyGwNSeUyNjhl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/qGObcxuXKcKhP43BqTeIC7KgRcM.jpg" alt="Vinland Saga" loading="lazy" />
+    <span class="badge-number">#16</span>
+    <div class="card-info">
+      <h3>The Apothecary Diaries</h3>
+      <div class="year">2023</div>
+      <div class="rating">⭐ 8.7</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+-Lyw0h06LpI4MTVl" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/qp2XSpNzopObSPkSAi7sujAsdh3.jpg" alt="Chainsaw Man" loading="lazy" />
+    <span class="badge-number">#17</span>
+    <div class="card-info">
+      <h3>Toilet-Bound Hanako-kun</h3>
+      <div class="year">2020</div>
+      <div class="rating">⭐ 8.6</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+3oU0D9R6yVxiZWM9" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/wOd98jDHkoWy2LZ4gSy67X1ihv1.jpg" alt="*****'s Paradise" loading="lazy" />
+    <span class="badge-number">#18</span>
+    <div class="card-info">
+      <h3>Assassination Classroom</h3>
+      <div class="year">2015</div>
+      <div class="rating">⭐ 8.4</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+3oU0D9R6yVxiZWM9" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/o19uFUrC9gLa366Sr41kSJM8vRz.jpg" alt="Spy x Family" loading="lazy" />
+    <span class="badge-number">#19</span>
+    <div class="card-info">
+      <h3>Radiant</h3>
+      <div class="year">2018</div>
+      <div class="rating">⭐ 8.5</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://t.me/+MUdhbHUuges5NzQ9" target="_blank" rel="noopener">
+    <img src="https://image.tmdb.org/t/p/w500/lUIuuvxthqaK4euFHTNIsRmdf3s.jpg" alt="Bleach TYBW" loading="lazy" />
+    <span class="badge-number">#20</span>
+    <div class="card-info">
+      <h3>There Was a Cute Girl in the Hero’s Party, So I Tried Confessing to Her</h3>
+      <div class="year">2026</div>
+      <div class="rating">⭐ 9.0</div>
+    </div>
+  </a>
+</div>
+
+</body>
+</html>
